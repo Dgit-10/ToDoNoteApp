@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    <div class="number">Task Number: {{todo.index}} </div>
+  </div>
+  <div class="card-body">
+    <h5 [ngClass]="{'strike' : todo.complete}" class="card-text">{{todo.title}}</h5>
+    <p class="card-text">{{todo.description}}</p>
+    <p class="card-text">Task Importance: {{todo.priority}}</p>
+    <!-- <p>Completed: {{todo.complete}}</p> -->
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="todo.complete"
+        (click)="onStrike(todo)">
+      <label class="form-check-label" for="flexCheckDefault">
+        Mark as Done
+      </label>
+    </div>
+    <!-- <button type="button" (click)="edit(todo)" class="btn btn-outline-primary" style="margin-right: 30px;">Update</button> -->
+    <button type="button" (click)="deleteTask(todo)" class="btn btn-outline-primary">Complete</button> 
+  </div>
+</div>

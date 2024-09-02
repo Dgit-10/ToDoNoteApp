@@ -1,0 +1,24 @@
+<div class="form-outline mt-3">
+    <input type="search" [(ngModel)]="searchText" id="form1" class="form-control" placeholder="Search" aria-label="search">
+  </div>
+  
+  <h4>{{ isEditMode ? 'Update Task' : 'Add New Task' }}</h4>
+  <app-add-todo 
+    [taskToEdit]="taskToEdit" 
+    (todoAdd)="todoAdd($event)">
+  </app-add-todo>
+  
+  <div *ngIf="todoList.length > 0; else noTasks">
+    <div *ngFor="let todo of todoList | filter:searchText">
+      <app-items [todo]="todo" 
+                 (toDelete)="deleteTask($event)"  
+                 (toCheck)="toCheckBox($event)">
+      </app-items>
+      <button type="button" class="btn btn-outline-secondary" (click)="editTask(todo)">Update</button>
+    </div>
+  </div>
+  
+  <ng-template #noTasks>
+    You are free
+  </ng-template>
+  

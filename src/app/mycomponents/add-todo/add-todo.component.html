@@ -1,0 +1,34 @@
+<form novalidate (ngSubmit)="onSubmit()">
+    <!-- Title Field -->
+    <div class="mb-3">
+        <label class="form-label">Title for your ToDo Task</label>
+        <input for="title" type="text" class="form-control" id="todoTitle" minlength="3" maxlength="50"
+            [(ngModel)]="todo.title" #todotitle="ngModel" required name="title">
+    </div>
+
+    <!-- Error Message for Title Field -->
+    <div class="alert alert-danger" *ngIf="todotitle.errors?.['minlength'] && (todotitle.dirty || todotitle.touched)">
+        Min Length must be three
+    </div>
+
+    <!-- Description Field -->
+    <div class="mb-3">
+        <label class="form-label">Description of it</label>
+        <input for="desc" type="text" class="form-control" id="todoDescription" [(ngModel)]="todo.description" required
+            name="description" #tododescription="ngModel">
+    </div>
+    <div class="alert alert-danger"
+        *ngIf="tododescription.errors?.['minlength'] && (tododescription.dirty || tododescription.touched)">
+        Description should be of 3 Characters Minimum
+    </div>
+
+    <!-- Priority Field -->
+    <div class="mb-3">
+        <label class="form-label">Priority to Assign</label>
+        <input type="number" class="form-control" id="todoPriority" [(ngModel)]="todo.priority" min="1" max="5" required
+            name="priority">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
